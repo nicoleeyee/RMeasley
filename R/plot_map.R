@@ -1,3 +1,5 @@
+#' Plot Countries
+#'
 #' Produce a map of countries with lowest measles case rate and highest GDP in a given year
 #'
 #' @param measles_data a dataframe of measles case data
@@ -12,6 +14,10 @@
 #' @examples
 #' plot_gdp_cases_map(measles_data, 2024, 20)
 plot_gdp_cases_map <- function(measles_data, year_chosen = 2024, top_n = 20){
+
+  if(!(year_chosen %in% 2012:2024)){
+    warning("Please enter a valid year between 2012 and 2024.")
+  }
 
   top_measles <- measles_data |>
     filter(year == {{year_chosen}})

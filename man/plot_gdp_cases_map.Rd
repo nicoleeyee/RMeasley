@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_map.R
 \name{plot_gdp_cases_map}
 \alias{plot_gdp_cases_map}
-\title{Produce a map of countries with lowest measles case rate and highest GDP in a given year}
+\title{Plot Countries}
 \usage{
 plot_gdp_cases_map(measles_data, year_chosen = 2024, top_n = 20)
 }
