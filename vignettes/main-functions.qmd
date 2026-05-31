@@ -19,7 +19,7 @@ library(RMeasley)
 ```
 
 ```{r}
-plot_gdp_cases_map(measles_data, year = 2024, top_n = 20)
+plot_gdp_cases_map(measles_data, year_chosen = 2024, top_n = 20)
 ```
 
 This will create a map using leaflet showing the top n countries with the highest gdp per capita and lowest measles case count per 1,000,000 people in the population in a specified year. There will be different colored markers for the gdp category and measles category, and a separate color for countries that fall in both categories. The default year is 2024 and the default top n is 20.
