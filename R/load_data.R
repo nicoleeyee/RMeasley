@@ -1,6 +1,8 @@
 #' Load data
 #'
 #' @returns A dataframe of measles data by month
+#'
+#' @importFrom readr read_csv
 #' @export
 #'
 #' @examples

@@ -2,12 +2,14 @@ Package: RMeasley
 Title: Get Insights on Global Measles Cases Over Time
 Version: 0.0.0.9000
 Authors@R: 
-    person("Hailey", "Ernest", , "haileyemailhere!@gmail.com", role = c("aut", "cre"))
+    person("Hailey", "Ernest", , "barbie.ernest@gmail.com", role = c("aut", "cre"))
     person("Nicole", "Yee", , "nicoleeyee8@gmail.com", role = c("aut", "cre"))
 Description: Functions to create summary tables and graphs about measles cases by country.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
+Imports:
+  readr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
 Suggests: 
