@@ -2,11 +2,15 @@
 #'
 #' @returns A dataframe of measles data by month
 #'
-#' @importFrom readr read_csv
+#' @importFrom arrow read_parquet
 #' @export
 #'
 #' @examples
 #' load_data()
 load_data <- function(){
-  readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-24/cases_year.csv')
+  path <- system.file("extdata",
+                      "cases_gdp_year.parquet",
+                      package = "RMeasley")
+  arrow::read_parquet(path,
+                      show_col_types = FALSE)
 }

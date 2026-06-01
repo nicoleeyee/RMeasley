@@ -9,14 +9,14 @@ License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
 Imports:
-  readr,
   dplyr,
   glue,
   htmltools,
   leaflet,
   rlang,
   scales,
-  stringr
+  stringr,
+  arrow
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
 Suggests: 

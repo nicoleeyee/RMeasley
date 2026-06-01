@@ -13,7 +13,7 @@
 #' @export
 epi_linked_cases <- function(measles_data, region = "Africa") {
 
-  region_input <- check_region(region)
+  region_input <- check_region({{region}})
 
   measles_data |>
     dplyr::mutate(

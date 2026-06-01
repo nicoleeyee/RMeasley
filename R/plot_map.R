@@ -13,10 +13,16 @@
 #' @export
 plot_gdp_cases_map <- function(measles_data, year_chosen = 2024, top_n = 20) {
 
-  year_chosen <- check_year(measles_data, year_chosen)
+  if (!is.numeric({{top_n}})) {
+    stop("Please enter a valid number of countries to check. ")
+  } else if ({{top_n}} > 244) {
+    stop("Please enter a valid number of countries to check.")
+  }
+
+  year_input <- check_year(measles_data, {{year_chosen}})
 
   top_measles <- measles_data |>
-    dplyr::filter(.data$year == year_chosen) |>
+    dplyr::filter(.data$year == year_input) |>
     dplyr::slice_min(
       n = top_n,
       order_by = .data$measles_incidence_rate_per_1000000_total_population
@@ -24,19 +30,19 @@ plot_gdp_cases_map <- function(measles_data, year_chosen = 2024, top_n = 20) {
     dplyr::mutate(type = "cases")
 
   measles_data |>
-    dplyr::filter(year == year_chosen) |>
+    dplyr::filter(.data$year == year_input) |>
     dplyr::slice_max(
-      n = top_n,
-      order_by = gdp_per_capita
+      n = {{top_n}},
+      order_by = .data$gdp_per_capita
     ) |>
     dplyr::mutate(type = "gdp") |>
     dplyr::bind_rows(top_measles) |>
     dplyr::group_by(.data$country, .data$Longitude, .data$Latitude) |>
     dplyr::summarise(
       both = dplyr::n() == 2,
-      type = dplyr::if_else(both, "both", dplyr::first(type)),
-      gdp = dplyr::first(gdp_per_capita),
-      measles_cases = dplyr::first(measles_incidence_rate_per_1000000_total_population),
+      type = dplyr::if_else(.data$both, "both", dplyr::first(.data$type)),
+      gdp = dplyr::first(.data$gdp_per_capita),
+      measles_cases = dplyr::first(.data$measles_incidence_rate_per_1000000_total_population),
       .groups = "drop"
     ) |>
     dplyr::mutate(
