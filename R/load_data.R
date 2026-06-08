@@ -13,8 +13,7 @@ load_data <- function(){
   path <- system.file("extdata",
                       "cases_gdp_year_new.parquet",
                       package = "RMeasley")
-  arrow::read_parquet(path,
-                      show_col_types = FALSE) |>
+  arrow::read_parquet(path) |>
     clean_data()
 }
 
@@ -23,7 +22,7 @@ load_data <- function(){
 #' @param data measles dataset from load_data()
 #'
 #' @returns A dataframe of measles data with regions renamed
-#' @importFrom dplyr mutate recode left_join recode_values join_by
+#' @importFrom dplyr mutate recode left_join join_by
 #' @importFrom readr read_csv
 clean_data <- function(data){
 
@@ -33,13 +32,17 @@ clean_data <- function(data){
 
   lat_lon <- readr::read_csv(coord_path,
                               show_col_types = FALSE) |>
-    mutate(Country = recode_values(Country,
-                                   "Republic of the Congo" ~ "Congo",
-                                   "The Gambia" ~ "Gambia",
-                                   "The Bahamas" ~ "Bahamas",
-                                   "Czech Republic" ~ "Czechia",
-                                   "Republic of Ireland" ~ "Ireland",
-                                   default = Country))
+    mutate(
+      Country = recode(
+        Country,
+        "Republic of the Congo" = "Congo",
+        "The Gambia" = "Gambia",
+        "The Bahamas" = "Bahamas",
+        "Czech Republic" = "Czechia",
+        "Republic of Ireland" = "Ireland",
+        .default = Country
+      )
+    )
   data |>
     mutate(
       region = recode(region,

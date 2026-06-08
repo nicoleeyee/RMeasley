@@ -18,21 +18,53 @@ knitr::opts_chunk$set(
 library(RMeasley)
 ```
 
+### Load the data
+
+The load_data() function loads the full merged measles and GDP dataset from the package inst/extdata folder. It also uses the package cleaning helper to rename regions and add country coordinate information.
+
+```{r}
+measles_data <- load_data()
+
+head(measles_data)
+```
+
+### Summarise epidemiologically linked measles cases
+
+The epi_linked_cases_table() function summarizes the proportion of measles cases that are epidemiologically linked for a selected region across years. The default region is Africa.
+
+```{r}
+epi_linked_cases_table(measles_data, region = "Africa")
+```
+
+### Summarise measles incidence by GDP group
+
+The gdp_summary_table() function groups observations into GDP per capita quintiles and returns median measles incidence rates by region and GDP group. The default year range is 2012 to 2024.
+
+```{r}
+gdp_summary_table(measles_data, start_year = 2020, end_year = 2024)
+```
+
+### Plot measles and rubella cases
+
+The plot_cases() function creates a plot comparing total measles and rubella cases over time. The default year range is 2012 to 2024.
+
+```{r}
+plot_cases(measles_data, start = 2020, end = 2024)
+```
+
+### Map GDP and measles incidence
+
+The plot_gdp_cases_map() function creates a Leaflet map showing the top n countries with the highest GDP per capita and the lowest measles incidence rate per 1,000,000 people in a specified year. The map uses different colored markers for the GDP category, the measles incidence category, and countries that fall into both categories. The default year is 2024 and the default top_n value is 20.
+
 ```{r}
 plot_gdp_cases_map(measles_data, year_chosen = 2024, top_n = 20)
 ```
 
-This will create a map using leaflet showing the top n countries with the highest gdp per capita and lowest measles case count per 1,000,000 people in the population in a specified year. There will be different colored markers for the gdp category and measles category, and a separate color for countries that fall in both categories. The default year is 2024 and the default top n is 20.
+### Analyze region and GDP effects
+
+The region_gdp_anova_table() function uses ANOVA to test whether adding region explains additional variation in epidemiologically linked measles cases after accounting for GDP per capita. This shows whether there is evidence that at least one region differs overall.
 
 ```{r}
-measles_incidence_rates_gdp(measles_data, region = "Africa", year)
+region_gdp_anova_table(measles_data, start_year = 2012, end_year = 2024)
 ```
-
-This will produce a summary output of average measles incidence rate for a given region for 5 GDP groups in a specified year. The GDP groups are determined as quintiles of GDP values in that year. The default region is Africa and the default year is 2024.
-
-```{r}
-epi_linked_cases(measles_data, region = "Africa")
-```
-
-This will produce a summary output of the proportion of measles cases that are epidemiologically linked for a specified region in all years. The default region is Africa.
 

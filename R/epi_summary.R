@@ -12,9 +12,9 @@
 #' @importFrom rlang .data
 #' @export
 #' @examples
-#' epi_linked_cases(load_data(), "Africa")
+#' epi_linked_cases_table(load_data(), "Africa")
 
-epi_linked_cases <- function(measles_data, region = "Africa") {
+epi_linked_cases_table <- function(measles_data, region = "Africa") {
 
   region_input <- check_region({{region}})
 
@@ -30,7 +30,7 @@ epi_linked_cases <- function(measles_data, region = "Africa") {
     #     "WPR" = "Western Pacific"
     #   )
     # ) |>
-    dplyr::filter(.data$region_name == region_input) |>
+    dplyr::filter(.data$region == region_input) |>
     dplyr::group_by(.data$year) |>
     dplyr::summarise(
       measles_epi_linked = sum(.data$measles_epi_linked, na.rm = TRUE),
@@ -41,5 +41,5 @@ epi_linked_cases <- function(measles_data, region = "Africa") {
       prop_epi_measles = .data$measles_epi_linked /
         (.data$measles_epi_linked + .data$measles_lab_confirmed)
     ) |>
-    dplyr::select(.data$year, .data$prop_epi_measles)
+    dplyr::select(year, prop_epi_measles)
 }

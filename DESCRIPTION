@@ -16,7 +16,11 @@ Imports:
   rlang,
   scales,
   stringr,
-  arrow
+  arrow,
+  readr,
+  tibble,
+  tidyr,
+  ggplot2
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
 Suggests: 
