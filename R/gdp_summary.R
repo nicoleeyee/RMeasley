@@ -11,10 +11,10 @@
 #' @export
 #'
 #' @examples
-#' gdp_summary(load_data())
-#' gdp_summary(load_data(), start_year = 2020, end_year = 2024)
+#' gdp_summary_table(load_data())
+#' gdp_summary_table(load_data(), start_year = 2020, end_year = 2024)
 
-gdp_summary <- function(measles_data, start_year = 2012, end_year = 2024) {
+gdp_summary_table <- function(measles_data, start_year = 2012, end_year = 2024) {
 
   measles_data |>
     dplyr::filter(

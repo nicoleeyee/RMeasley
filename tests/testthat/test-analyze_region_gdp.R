@@ -1,7 +1,7 @@
-test_that("analyze_region_gdp works", {
+test_that("region_gdp_anova_table works", {
   dat <- load_data()
 
-  result <- analyze_region_gdp(dat, start_year = 2020, end_year = 2024)
+  result <- region_gdp_anova_table(dat, start_year = 2020, end_year = 2024)
 
   expect_s3_class(result, "tbl_df")
 

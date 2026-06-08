@@ -12,9 +12,9 @@
 #' @importFrom rlang .data
 #' @export
 #' @examples
-#' epi_linked_cases(load_data(), "Africa")
+#' epi_linked_cases_table(load_data(), "Africa")
 
-epi_linked_cases <- function(measles_data, region = "Africa") {
+epi_linked_cases_table <- function(measles_data, region = "Africa") {
 
   region_input <- check_region({{region}})
 

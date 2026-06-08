@@ -1,7 +1,7 @@
-test_that("gdp_summary works", {
+test_that("gdp_summary_table works", {
   dat <- load_data()
 
-  result <- gdp_summary(dat, start_year = 2020, end_year = 2024)
+  result <- gdp_summary_table(dat, start_year = 2020, end_year = 2024)
 
   expect_s3_class(result, "tbl_df")
 

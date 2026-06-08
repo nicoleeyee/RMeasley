@@ -1,7 +1,7 @@
-test_that("epi_linked_cases works", {
+test_that("epi_linked_cases_table works", {
   dat <- load_data()
 
-  result <- epi_linked_cases(dat, region = "Africa")
+  result <- epi_linked_cases_table(dat, region = "Africa")
 
   expected <- dat |>
     dplyr::filter(region == "Africa") |>

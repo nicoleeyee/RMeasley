@@ -17,10 +17,10 @@
 #' @export
 #'
 #' @examples
-#' analyze_region_gdp(load_data())
-#' analyze_region_gdp(load_data(), start_year = 2020, end_year = 2024)
+#' region_gdp_anova_table(load_data())
+#' region_gdp_anova_table(load_data(), start_year = 2020, end_year = 2024)
 
-analyze_region_gdp <- function(measles_data, start_year = 2012, end_year = 2024) {
+region_gdp_anova_table <- function(measles_data, start_year = 2012, end_year = 2024) {
 
   epi_gdp_model_data <- measles_data |>
     dplyr::distinct(
